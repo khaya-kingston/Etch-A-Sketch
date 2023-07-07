@@ -1,0 +1,78 @@
+
+body {
+    margin: 0;
+    padding-top: 40px;
+    padding-bottom: 0;
+    background: linear-gradient(to bottom right, #ecec07, #d17112, #e542c1);
+    min-height: 100vh;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#title {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    font-size: 45px;
+    text-decoration: underline;
+}
+
+#game-cover {
+    box-shadow: 0px 0px 25px rgb(26, 26, 48);
+    background-color: rgb(148, 200, 200);
+    border-radius: 25px;
+    padding: 25px;
+}
+
+#gameboy {
+    display: flex;
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: rgb(115, 115, 218);
+}
+
+#controller {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.toggler {
+    display: flex;
+
+}
+
+.screen {
+    width: 500px;
+    height: 500px;
+    margin: 25px;
+    padding: 0;
+    background-color: whitesmoke;
+    border: 3px solid;
+    border-radius: 5px;
+    border-color: gray;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer {
+    display: flex;
+    color: #F9FAF8;
+    justify-content: center;
+    font-weight: lighter;
+    padding: 20px;
+}
