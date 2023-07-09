@@ -1,5 +1,4 @@
-// Dimensions of the board
-let dims = 2;
+const dims = 35
 
 
 // Extracts the screen class
@@ -11,7 +10,6 @@ let inkColor = "black";
 // Will set the ink color depending on the button
 function inkType(e) {
     inkColor === "black" ? inkColor = "rainbow":inkColor = "black";
-    console.log(inkColor);
 }
 
 // Converts a value from base10 to a hex string to use for colors
@@ -45,7 +43,6 @@ function getRainbowPix() {
     return baseConverter(pixColor);
 }
 
-console.log(getRainbowPix());
 
 // Will actually set the damn pixel color on screen
 function draw(e) {
@@ -53,17 +50,15 @@ function draw(e) {
                 : this.style['background-color'] = getRainbowPix();
 } 
 
-// Extracts the toggles
+// Extracts the color toggle
 let colorButt = document.querySelector(".color.slider");
 colorButt.addEventListener('click', inkType);
-colorButt.addEventListener('keydown', function(e) {
-    if (e.key === "c") {
-        inkType;
-    }
-});
+let colSlider = document.querySelector('input');
 
 
 
+
+// Reset button code
 // Extract the reset button 
 let shake = document.querySelector('.reset');
 shake.addEventListener('click', function(e) {
@@ -82,24 +77,158 @@ shake.addEventListener('mouseup', function(e) {
     shake.style['box-shadow'] = '0px 0px 7px rgb(26, 26, 48)';
 });
 
-// Inks the covered pixels
-
 
 // Actually creates and the pixels with shade functionality
-for (let i = 0; i < dims; i++) {
-    let row = document.createElement('div');
-    row.style.cssText = 'display: flex; flex: 1; margin: 0;';
+function newPixels(value) {
+    oldDims = value;
 
-    for (let j = 1; j < dims; j++) {
-        let col = document.createElement('div');
-        col.style.cssText = 'margin: 0; flex: 1; transition: background-color 0.25s;';
-        col.addEventListener('mouseover', draw);
-        row.appendChild(col);
+    [...screen.children].forEach(row => {
+        [...row.children].forEach(cell => {
+            row.removeChild(cell)
+            });
+        screen.removeChild(row);
+        });
+   
+
+    for (let i = 0; i < value; i++) {
+        let row = document.createElement('div');
+        row.style.cssText = 'display: flex; flex: 1; margin: 0;';
+    
+        for (let j = 0; j < value; j++) {
+            let col = document.createElement('div');
+            col.style.cssText = 'margin: 0; flex: 1; transition: background-color 0.25s;';
+            col.addEventListener('mouseover', draw);
+            row.appendChild(col);
+        }
+        screen.appendChild(row);
+    };
+}
+
+
+
+// Dimension Control Code
+// Cleans up user input to either a number in a range or the prev val if a num not given
+function dimCleaner(value) {
+    if (!(isNaN(Number(value)))) {
+        if (value < 16) {
+            return 16;
+        } else if (value > 100) {
+            return 100;
+        } else {
+            return value;
+        }
+    } else {
+        return "";
     }
-    screen.appendChild(row);
-};
+}
+
+
+// Checks what dims have been input and resets the screen
+function screenSetter(value) {
+    newDims = dimCleaner(value);
+
+    newDims ? newPixels(newDims) : newPixels(oldDims);
+}
+
+
+// Extract the dim screen
+const dim = document.getElementById('dim-screen');
+let oldDims = 16;
+dim.value = oldDims;
+screenSetter(dim.value);
+// Listener to run actual restructure event
+dim.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        
+        screenSetter(dim.value);
+        dim.value = oldDims;
+    }
+});
+
+
+// Up/Down Dim Button Functionality
+const upButton = document.querySelector('.up');
+upButton.addEventListener('click', function(e) {
+    screenSetter(++dim.value);
+    dim.value = oldDims;
+});
+// makes the shadow go away as if clicked or if the button is pressed
+upButton.addEventListener('mousedown', function(e) {
+    upButton.style['box-shadow'] = 'none';
+});
+// makes the shadow go away when unclicked
+upButton.addEventListener('mouseup', function(e) {
+    upButton.style['box-shadow'] = '0px 0px 7px rgb(26, 26, 48)';
+});
+// makes the shadow go away when unclicked
+upButton.addEventListener('keyup', function(e) {
+    if (e.key === "UpArrow") {
+        upButton.style['box-shadow'] = '0px 0px 7px rgb(26, 26, 48)';
+    }
+});
+
+
+const downButton = document.querySelector('.down');
+downButton.addEventListener('click', function(e) {
+    screenSetter(--dim.value);
+    dim.value = oldDims;
+});
+// makes the shadow go away as if clicked or if the button is pressed
+downButton.addEventListener('mousedown', function(e) {
+    downButton.style['box-shadow'] = 'none';
+});
+// makes the shadow go away when unclicked
+downButton.addEventListener('mouseup', function(e) {
+    downButton.style['box-shadow'] = '0px 0px 7px rgb(26, 26, 48)';
+});
 
 
 
+// HotKey Functionality
+const keyLog = document.querySelector('body');
 
-console.log(screen.querySelectorAll('div'));
+// Up/Down Dim Arrows
+keyLog.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowUp') {
+
+        e.preventDefault();
+        screenSetter(++dim.value);
+        dim.value = oldDims;
+        upButton.style['box-shadow'] = 'none';
+
+    } else if (e.key === 'ArrowDown') {
+
+        e.preventDefault();
+        screenSetter(--dim.value);
+        dim.value = oldDims;
+        downButton.style['box-shadow'] = 'none';
+
+    } else if (e.key === "c") {
+
+        inkType(e);
+        console.log(inkColor);
+        colSlider.checked = !colSlider.checked;
+
+    } else if (e.key === 'x') {
+
+        [...screen.children].forEach(row => {
+            [...row.children].forEach(cell => {
+                cell.style['background-color'] = 'whitesmoke';
+            });
+        });
+        shake.style['box-shadow'] = 'none';
+
+    }
+
+
+});
+
+keyLog.addEventListener('keyup', function(e) {
+    if (e.key === 'ArrowUp') {
+        upButton.style['box-shadow'] = '0px 0px 7px rgb(26, 26, 48)';
+    } else if (e.key === 'ArrowDown') {
+        downButton.style['box-shadow'] = '0px 0px 7px rgb(26, 26, 48)';
+    } else if (e.key === 'x') {
+        shake.style['box-shadow'] = '0px 0px 7px rgb(26, 26, 48)';
+    }
+})

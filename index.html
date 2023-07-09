@@ -9,53 +9,35 @@
     </head>
 
     <body>
-        <span id="title">Etch-A-Sketch</span>
-
         <div id="game-cover">
+            <span id="title">Etch-A-Sketch</span>
             <div id="gameboy">
                 <div id="controller">
-                    <!-- <div id="buttons"> -->
                         <div class="switch">
                             Black
                             <label class="toggler">
-                                <input type="checkbox">
+                                <input type="checkbox" class="rainbow">
                                 <span class="color slider"></span>
                             </label>
                             Rainbow
                         </div>
-            
-                        <div class="switch">
-                            On
-                            <label class="toggler">
-                                <input type="checkbox">
-                                <span class="slider"></span>
-                            </label>
-                            Off
-                        </div>
-
-                        <div class="switch">
-                            On
-                            <label class="toggler">
-                                <input type="checkbox">
-                                <span class="slider"></span>
-                            </label>
-                            Off
-                        </div>
-
-                        <div class="dim-contr">
-                            UpDown Arrow
-                            Pix Screen
+                        
+                        <div class="dimensions">
+                            <div class="buttons">
+                                <button class="up arrow">&#9650;</button>
+                                <button class="down arrow">&#9660;</button>
+                            </div>
+                            <input type="text" name="dims" id="dim-screen">
                         </div>
 
                         <button class="reset">Shake</button>
                         
-                    <!-- </div> -->
-
-                    <!-- <img src="images/K-Image.jpeg"> -->
+                   
                 </div>
 
                 <div class="screen"></div>
             </div>
+            <p class="hotkeys">Hotkeys: Color:c, Pixels: &#9650;/&#9660;, Shake: x</p>
         </div>
 
         <div class="footer">

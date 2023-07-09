@@ -21,14 +21,21 @@ body {
     font-weight: bold;
     font-size: 45px;
     text-decoration: underline;
-    color: black;
+    color: gold;
+    text-shadow: 1px 1px 4px rgb(26, 26, 48);;
 }
 
 #game-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-shadow: 0px 0px 25px rgb(26, 26, 48);
     background-color: rgb(148, 200, 200);
     border-radius: 25px;
-    padding: 25px;
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 5px;
 }
 
 #gameboy {
@@ -52,11 +59,6 @@ body {
     align-items: center;
 }
 
-#buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 
 .toggler {
     position: relative;
@@ -97,18 +99,54 @@ input:checked + .slider.color{
     background: linear-gradient(to right, #e83922, #d17112, #efef0a, #3cec07, #2267e8, #e822d8);
 }
 
+
 input:checked + .slider:before {
     transform: translateX(25px);
 }
 
+.dimensions {
+    display: flex;
+    height: 80px;
+    background-color: #34a810;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.buttons {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    justify-content: center;
+    width: 50px;
+}
+
+.arrow {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    box-shadow: 1px 1px 4px rgb(26, 26, 48);
+    transition: box-shadow 0;
+}
+
+#dim-screen {
+    margin: 3px;
+    font-size: large;
+}
+
 .reset {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     border: 5px solid rgb(198, 198, 198);
     background-color: #ff1e00;
     box-shadow: 0px 0px 7px rgb(26, 26, 48);
     transition: box-shadow 0;
+    font-weight: lighter;
+    text-shadow: 0.5px 0px 1px rgb(26, 26, 48);
 }
 
 .screen {
@@ -126,6 +164,12 @@ input:checked + .slider:before {
     width: 500px;
     height: 500px;
 
+}
+
+.hotkeys {
+    font-size: small;
+    color: gold;
+    text-shadow: 0.5px 0px 1px rgb(26, 26, 48);;
 }
 
 
