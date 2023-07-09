@@ -15,22 +15,30 @@
             <div id="gameboy">
                 <div id="controller">
                     <!-- <div id="buttons"> -->
-                        <div class="toggler">
-                            <div class="toggle-title"></div>
+                        <div class="switch">
+                            Black
+                            <label class="toggler">
+                                <input type="checkbox">
+                                <span class="color slider"></span>
+                            </label>
+                            Rainbow
+                        </div>
+            
+                        <div class="switch">
                             On
-                            <div>Toggle</div>
+                            <label class="toggler">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
                             Off
                         </div>
-                        <div class="toggler">
-                            <div class="toggle-title"></div>
+
+                        <div class="switch">
                             On
-                            <div>Toggle</div>
-                            Off
-                        </div>
-                        <div class="toggler">
-                            <div class="toggle-title"></div>
-                            On
-                            <div>Toggle</div>
+                            <label class="toggler">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
                             Off
                         </div>
 
@@ -39,7 +47,7 @@
                             Pix Screen
                         </div>
 
-                        <button>Reset</button>
+                        <button class="reset">Shake</button>
                         
                     <!-- </div> -->
 
@@ -53,6 +61,8 @@
         <div class="footer">
             <p style="font-size: 16px;">Copyright &copy; khaya-kingston 2023</p>
         </div>
+
+        <script src="backend.js"></script>
 
     </body>
 

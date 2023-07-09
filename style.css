@@ -21,6 +21,7 @@ body {
     font-weight: bold;
     font-size: 45px;
     text-decoration: underline;
+    color: black;
 }
 
 #game-cover {
@@ -45,6 +46,12 @@ body {
     align-items: center;
 }
 
+.switch {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
 #buttons {
     display: flex;
     flex-direction: column;
@@ -52,13 +59,60 @@ body {
 }
 
 .toggler {
-    display: flex;
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
 
+.toggler input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    transition: 0.4s;
+    border-radius: 15px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider.color{
+    background: linear-gradient(to right, #e83922, #d17112, #efef0a, #3cec07, #2267e8, #e822d8);
+}
+
+input:checked + .slider:before {
+    transform: translateX(25px);
+}
+
+.reset {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 5px solid rgb(198, 198, 198);
+    background-color: #ff1e00;
+    box-shadow: 0px 0px 7px rgb(26, 26, 48);
+    transition: box-shadow 0;
 }
 
 .screen {
-    width: 500px;
-    height: 500px;
+
     margin: 25px;
     padding: 0;
     background-color: whitesmoke;
@@ -66,8 +120,15 @@ body {
     border-radius: 5px;
     border-color: gray;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+    width: 500px;
+    height: 500px;
+
 }
+
+
 
 .footer {
     display: flex;
